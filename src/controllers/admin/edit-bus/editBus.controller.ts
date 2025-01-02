@@ -1,10 +1,10 @@
 import express from "express";
-import { busesDataModel } from "../../../models/mongodb/bus-ticket/busSchema.model.js";
 import { parseJwtToken } from "../../../custom-functions-2/1/parse-authentication-token/parseAuthenticationToken.js";
-import { userDataModel } from "../../../models/mongodb/bus-ticket/userSchema.model.js";
 import { JWT_SECRET_KEY } from "../../../data/others/EnvironmentVariables.js";
+import { userDataModel } from "../../../models/mongodb/bus-ticket/userSchema.model.js";
+import { busesDataModel } from "../../../models/mongodb/bus-ticket/busSchema.model.js";
 
-export const createBusController = async (
+export const editBusController = async (
   request: express.Request,
   response: express.Response
 ) => {
@@ -16,6 +16,7 @@ export const createBusController = async (
       capacity,
       departureTime,
       ticketPrice,
+      id,
       authToken,
     } = receivedData;
     const parsedTokenData: any = await parseJwtToken(authToken, JWT_SECRET_KEY);
@@ -25,19 +26,16 @@ export const createBusController = async (
     if (userData.role !== "admin") {
       throw new Error("User is not admin");
     }
-    // CREATE NEW BUS
-    await busesDataModel.create({
+    // SAVE NEW DATA
+    console.log(receivedData);
+    await busesDataModel.findByIdAndUpdate(id, {
       name,
       description,
       capacity,
       departureTime,
       ticketPrice,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
     });
-
-    console.log("Bus created successfully");
-    response.status(200).json({ _: "" });
+    response.status(200).json({ message: "Bus Updated Successfully" });
   } catch (error: any) {
     console.log(error);
     // SENDING RESPONSE IF ANYTHING GOES WRONG---------------------------------------------------------------------
