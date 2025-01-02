@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 let saltRounds = 10;
-let hashMyPassword = (plainPassword: string) => {
+export const hashMyPassword = (plainPassword: string) => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(
       plainPassword,
@@ -18,14 +18,17 @@ let hashMyPassword = (plainPassword: string) => {
     );
   });
 };
-let checkPassword = (plainPassword: string, hashedPassword: string) => {
+export const checkPasswordOld = (
+  plainPassword: string,
+  hashedPassword: string
+) => {
   return new Promise((resolve, reject) => {
     let isMatch = bcrypt.compareSync(plainPassword, hashedPassword);
     resolve(isMatch);
   });
 };
 
-export const checkMyPasswordVersion2 = (
+export const checkMyPassword = (
   plainPassword: string,
   hashedPassword: string
 ) => {
@@ -43,5 +46,3 @@ export const checkMyPasswordVersion2 = (
     }
   });
 };
-
-export { bcrypt, hashMyPassword, checkPassword };

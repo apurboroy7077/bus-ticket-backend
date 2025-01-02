@@ -25,7 +25,7 @@ const storeDataToUnverifiedUsersDatabase = (data: any) => {
         hashedPassword,
         timeStamp,
       ];
-      mySqlConnection.query(sqlQuery, sqlValues, (error) => {
+      mySqlConnection.query(sqlQuery, sqlValues, (error: any) => {
         if (error) {
           console.log(error);
           reject(error);

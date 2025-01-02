@@ -8,25 +8,29 @@ const verifyAccount = (verificationCode: any) => {
         SELECT * FROM unverified_users_info WHERE verification_code = ?
       `;
       const values = [verificationCode];
-      mySqlConnection.query(sqlQuery, values, async (error, results: any) => {
-        if (error) {
-          console.log(error);
-        } else if (results.length > 0) {
-          const { id, username, email, hashed_password, creation_time } =
-            results[0];
-          await saveUserDataToVerifiedDatabase(
-            id,
-            username,
-            email,
-            hashed_password,
-            creation_time
-          );
+      mySqlConnection.query(
+        sqlQuery,
+        values,
+        async (error: any, results: any) => {
+          if (error) {
+            console.log(error);
+          } else if (results.length > 0) {
+            const { id, username, email, hashed_password, creation_time } =
+              results[0];
+            await saveUserDataToVerifiedDatabase(
+              id,
+              username,
+              email,
+              hashed_password,
+              creation_time
+            );
 
-          resolve("Verified Account Successfully");
-        } else if (results.length < 1) {
-          reject("Invalid Verification Code");
+            resolve("Verified Account Successfully");
+          } else if (results.length < 1) {
+            reject("Invalid Verification Code");
+          }
         }
-      });
+      );
     } catch (error) {
       console.log(error);
       reject(error);

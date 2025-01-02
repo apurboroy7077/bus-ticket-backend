@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 let saltRounds = 10;
-let hashMyPassword = (plainPassword) => {
+export const hashMyPassword = (plainPassword) => {
     return new Promise((resolve, reject) => {
         bcrypt.hash(plainPassword, saltRounds, (error, hashedPassword) => {
             if (error) {
@@ -15,13 +15,13 @@ let hashMyPassword = (plainPassword) => {
         });
     });
 };
-let checkPassword = (plainPassword, hashedPassword) => {
+export const checkPasswordOld = (plainPassword, hashedPassword) => {
     return new Promise((resolve, reject) => {
         let isMatch = bcrypt.compareSync(plainPassword, hashedPassword);
         resolve(isMatch);
     });
 };
-export const checkMyPasswordVersion2 = (plainPassword, hashedPassword) => {
+export const checkMyPassword = (plainPassword, hashedPassword) => {
     return new Promise(async (resolve, reject) => {
         try {
             let isMatch = bcrypt.compareSync(plainPassword, hashedPassword);
@@ -38,5 +38,4 @@ export const checkMyPasswordVersion2 = (plainPassword, hashedPassword) => {
         }
     });
 };
-export { bcrypt, hashMyPassword, checkPassword };
 //# sourceMappingURL=hashingPassword.js.map

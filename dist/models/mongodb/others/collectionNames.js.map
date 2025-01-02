@@ -1,1 +1,1 @@
-{"version":3,"file":"collectionNames.js","sourceRoot":"","sources":["../../../../src/models/mongodb/others/collectionNames.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,+BAA+B,GAAG,sBAAsB,CAAC;AACtE,MAAM,CAAC,MAAM,mCAAmC,GAC9C,iCAAiC,CAAC"}
+{"version":3,"file":"collectionNames.js","sourceRoot":"","sources":["../../../../src/models/mongodb/others/collectionNames.ts"],"names":[],"mappings":";AAAA,yEAAyE;AACzE,qDAAqD;AACrD,uCAAuC"}

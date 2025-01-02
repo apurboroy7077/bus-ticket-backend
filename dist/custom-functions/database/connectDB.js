@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { quiztifyAR7DatabaseUrl, } from "../../data/archdune/variables/ArchduneVariables.js";
+import { busTicketDatabaseUrl } from "../../data/environment-variables/environmentVariables.js";
 const connectDB = async () => {
     await mongoose
-        .connect(quiztifyAR7DatabaseUrl)
+        .connect(busTicketDatabaseUrl)
         .then((response) => {
         console.log("Database is Connected");
     })
@@ -14,5 +14,4 @@ const connectDB = async () => {
     });
 };
 export { connectDB };
-//
 //# sourceMappingURL=connectDB.js.map

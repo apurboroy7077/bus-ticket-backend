@@ -14,7 +14,7 @@ const saveUserDataToMySqlDatabase = (data: any) => {
   VALUES (?, ?, ?, ?, ?)
 `;
       const sqlValues = [myId, userName, userEmail, hashedPassword, timeStamp];
-      mySqlConnection.query(sqlQuery, sqlValues, (error) => {
+      mySqlConnection.query(sqlQuery, sqlValues, (error: any) => {
         if (error) {
           console.log(error);
           reject(error);

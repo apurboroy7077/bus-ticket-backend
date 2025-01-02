@@ -5,7 +5,7 @@ const giveUserDataFromSqlDatabaseByEmail = (email: string) => {
     try {
       const sqlQuery = `SELECT * FROM user_info WHERE email = ?`;
       const sqlValues = [email];
-      mySqlConnection.query(sqlQuery, sqlValues, (error, result: any) => {
+      mySqlConnection.query(sqlQuery, sqlValues, (error: any, result: any) => {
         if (error) {
           console.log(error);
           reject(error);

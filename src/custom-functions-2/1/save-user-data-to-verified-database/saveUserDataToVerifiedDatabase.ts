@@ -22,7 +22,7 @@ const saveUserDataToVerifiedDatabase = (
         creation_time,
       ];
 
-      mySqlConnection.query(sqlQueryToSaveData, valuesTosave, (error) => {
+      mySqlConnection.query(sqlQueryToSaveData, valuesTosave, (error: any) => {
         if (error) {
           console.log(error);
           reject(error);
