@@ -8,6 +8,8 @@ import { productsRouter } from "./routes/products/products.route.js";
 import { userActivityRouter } from "./routes/user-activity/userActivity.route.js";
 import gameRouter from "./routes/game/game.route.js";
 import { mySqlRouter } from "./routes/mysql/mysql.route.js";
+import { adminRouter } from "./routes/admin/admin.route.js";
+import { userRouter } from "./routes/user/user.route.js";
 const app = express(); // Create an Express app
 // USING SOME BASIC PACKAGES STARTS-----------------------------------------------------------------------------------------------------------------------------
 app.use(express.json());
@@ -17,11 +19,13 @@ app.use(morgan("dev"));
 // USING SOME BASIC PACKAGES ENDS-----------------------------------------------------------------------------------------------------------------------------
 // USING SOME CUSTOM MIDDLEWARE STARTS------------------------------------------------------------------------------------------------------------------
 app.use((req, res, next) => {
-    setTimeout(next, 1000); // Introduce a delay (adjust time if needed) before passing control to the next middleware
+    setTimeout(next, 0); // Introduce a delay (adjust time if needed) before passing control to the next middleware
 });
 // USING SOME CUSTOM MIDDLEWARE ENDS------------------------------------------------------------------------------------------------------------------
 // USING ROUTES STARTS------------------------------------------------------------------------------------------------------------------------
 app.use(authenticationRouter);
+app.use(adminRouter);
+app.use(userRouter);
 app.use(testingRouter);
 app.use(productsRouter);
 app.use(userActivityRouter);

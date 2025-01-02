@@ -20,7 +20,7 @@ export const verifyByAuthTokenController = async (
     if (!userData2) {
       throw new Error("User Does not Exists.");
     }
-    console.log(userData2);
+
     const { username, role, _id, createdAt, updatedAt } = userData2;
     const responseData = { username, email, role, _id, createdAt, updatedAt };
     response.status(200).json(responseData);
